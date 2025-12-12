@@ -36,6 +36,7 @@ in rec {
       nativeBuildInputs = with configure-scope; [ dune ocaml ];
       phases = [ "unpackPhase" "configurePhase" "installPhase" "fixupPhase" ];
       configurePhase = ''
+        rm -vrf test
         mirage configure -f ${mirageDir}/config.ml -t ${target}
         # Move Opam file to root so a recursive search for opam files isn't
         # required. Prefix it so it doesn't interfere with other packages.
